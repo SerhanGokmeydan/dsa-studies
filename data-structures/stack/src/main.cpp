@@ -1,9 +1,8 @@
+#include "stack-array.hpp"
+#include "stack-list.hpp"
 #include <iostream>
-#include "StackArray.hpp"
-#include "StackLinkedList.hpp"
 
-int main()
-{
+int main() {
     // Stack with array implementation
     StackArray *stackArray = new StackArray(10);
 
@@ -17,21 +16,15 @@ int main()
 
     std::cout << "Stack size is " << stackArray->size() << std::endl;
 
-    if (stackArray->isEmpty())
-    {
+    if (stackArray->isEmpty()) {
         std::cout << "Stack is empty" << std::endl;
-    }
-    else
-    {
+    } else {
         std::cout << "Stack is not empty" << std::endl;
     }
 
-    if (stackArray->isFull())
-    {
+    if (stackArray->isFull()) {
         std::cout << "Stack is full" << std::endl;
-    }
-    else
-    {
+    } else {
         std::cout << "Stack is not full" << std::endl;
     }
 
@@ -61,12 +54,9 @@ int main()
 
     std::cout << "Stack size is " << stackLinkedList->size() << std::endl;
 
-    if (stackLinkedList->isEmpty())
-    {
+    if (stackLinkedList->isEmpty()) {
         std::cout << "Stack is empty" << std::endl;
-    }
-    else
-    {
+    } else {
         std::cout << "Stack is not empty" << std::endl;
     }
 
