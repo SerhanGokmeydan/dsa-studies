@@ -1,6 +1,6 @@
 #include "selection-sort.hpp"
 
-void selectionSort(std::vector<int> &arr) {
+void selectionSort(vector<int> &arr) {
     int n = arr.size();
     int temp;
     for (int i = 0; i < n; i++) {

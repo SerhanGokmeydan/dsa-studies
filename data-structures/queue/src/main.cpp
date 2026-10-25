@@ -1,13 +1,12 @@
-#include <iostream>
 #include "queue-array.hpp"
 #include "queue-list.hpp"
+#include <iostream>
 
-int main()
-{
+int main() {
     QueueArray *queueArray = new QueueArray(5);
     QueueList *queueList = new QueueList();
 
-    std::cout << "-----Queue with array implementation-----" << std::endl;
+    cout << "-----Queue with array implementation-----" << endl;
 
     queueArray->enqueue(10);
     queueArray->enqueue(20);
@@ -16,16 +15,18 @@ int main()
     queueArray->enqueue(50);
     queueArray->print();
 
-    std::cout << "front: " << queueArray->peekFront() << " rear: " << queueArray->peekRear() << std::endl;
+    cout << "front: " << queueArray->peekFront()
+         << " rear: " << queueArray->peekRear() << endl;
 
     queueArray->dequeue();
     queueArray->print();
 
-    std::cout << "front: " << queueArray->peekFront() << " rear: " << queueArray->peekRear() << std::endl;
+    cout << "front: " << queueArray->peekFront()
+         << " rear: " << queueArray->peekRear() << endl;
 
-    std::cout << "Queue size is " << queueArray->size() << std::endl;
+    cout << "Queue size is " << queueArray->size() << endl;
 
-    std::cout << "-----Queue with list implementation-----" << std::endl;
+    cout << "-----Queue with list implementation-----" << endl;
 
     queueList->enqueue(10);
     queueList->enqueue(20);
@@ -34,12 +35,14 @@ int main()
     queueList->enqueue(50);
     queueList->print();
 
-    std::cout << "front: " << queueList->peekFront() << " rear: " << queueList->peekRear() << std::endl;
+    cout << "front: " << queueList->peekFront()
+         << " rear: " << queueList->peekRear() << endl;
 
     queueList->dequeue();
     queueList->print();
 
-    std::cout << "front: " << queueList->peekFront() << " rear: " << queueList->peekRear() << std::endl;
+    cout << "front: " << queueList->peekFront()
+         << " rear: " << queueList->peekRear() << endl;
 
-    std::cout << "Queue size is " << queueList->size() << std::endl;
+    cout << "Queue size is " << queueList->size() << endl;
 }

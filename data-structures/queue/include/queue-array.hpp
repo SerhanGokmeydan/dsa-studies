@@ -1,15 +1,16 @@
 #pragma once
 
-class QueueArray
-{
-private:
+using namespace std;
+
+class QueueArray {
+  private:
     int *arr;
     int cap;
     int count;
     int front;
     int rear;
 
-public:
+  public:
     void enqueue(int data);
     void dequeue();
     int peekFront();

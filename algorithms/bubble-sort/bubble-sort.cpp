@@ -1,6 +1,6 @@
 #include "bubble-sort.hpp"
 
-void bubbleSort(std::vector<int> &arr) {
+void bubbleSort(vector<int> &arr) {
     bool swapped;
     for (int i = 0; i < arr.size() - 1; i++) {
         swapped = false;

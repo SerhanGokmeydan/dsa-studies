@@ -1,24 +1,18 @@
-#include <iostream>
 #include "queue-array.hpp"
+#include <iostream>
 
-QueueArray::QueueArray(int cap)
-{
+QueueArray::QueueArray(int cap) {
     count = 0;
     this->cap = cap;
     arr = new int[this->cap];
     front = rear = 0;
 }
 
-QueueArray::~QueueArray()
-{
-    delete[] arr;
-}
+QueueArray::~QueueArray() { delete[] arr; }
 
-int QueueArray::circArr(int index)
-{
-    if (index < 0)
-    {
-        std::cout << "Invalid index" << std::endl;
+int QueueArray::circArr(int index) {
+    if (index < 0) {
+        cout << "Invalid index" << endl;
         return -1;
     }
 
@@ -26,21 +20,13 @@ int QueueArray::circArr(int index)
     return index;
 }
 
-bool QueueArray::isEmpty()
-{
-    return count == 0;
-}
+bool QueueArray::isEmpty() { return count == 0; }
 
-bool QueueArray::isFull()
-{
-    return count == cap;
-}
+bool QueueArray::isFull() { return count == cap; }
 
-void QueueArray::enqueue(int data)
-{
-    if (isFull())
-    {
-        std::cout << "The queue is already full" << std::endl;
+void QueueArray::enqueue(int data) {
+    if (isFull()) {
+        cout << "The queue is already full" << endl;
         return;
     }
     arr[rear] = data;
@@ -48,53 +34,42 @@ void QueueArray::enqueue(int data)
     count++;
 }
 
-void QueueArray::dequeue()
-{
-    if (isEmpty())
-    {
-        std::cout << "The queue is already empty" << std::endl;
+void QueueArray::dequeue() {
+    if (isEmpty()) {
+        cout << "The queue is already empty" << endl;
         return;
     }
     front = circArr(front + 1);
     count--;
 }
 
-int QueueArray::peekFront()
-{
-    if (isEmpty())
-    {
-        std::cout << "The queue is empty" << std::endl;
+int QueueArray::peekFront() {
+    if (isEmpty()) {
+        cout << "The queue is empty" << endl;
     }
     return arr[front];
 }
 
-int QueueArray::peekRear()
-{
-    if (isEmpty())
-    {
-        std::cout << "The queue is empty" << std::endl;
+int QueueArray::peekRear() {
+    if (isEmpty()) {
+        cout << "The queue is empty" << endl;
     }
-    // rear sıranın sonundaki elemanın sağında kaldığı için bir gerisini işaret etmemiz gerekiyor
+    // rear sıranın sonundaki elemanın sağında kaldığı için bir gerisini işaret
+    // etmemiz gerekiyor
     return arr[circArr(rear + (cap - 1))];
 }
 
-int QueueArray::size()
-{
-    return count;
-}
+int QueueArray::size() { return count; }
 
-void QueueArray::print()
-{
-    if (isEmpty())
-    {
-        std::cout << "The queue is empty" << std::endl;
+void QueueArray::print() {
+    if (isEmpty()) {
+        cout << "The queue is empty" << endl;
         return;
     }
     // sadece sıradaki eleman sayısı kadarını ekrana yazdır
-    for (int i = 0; i < count; i++)
-    {
+    for (int i = 0; i < count; i++) {
         int index = circArr(front + i);
-        std::cout << arr[index] << " <- ";
+        cout << arr[index] << " <- ";
     }
-    std::cout << std::endl;
+    cout << endl;
 }

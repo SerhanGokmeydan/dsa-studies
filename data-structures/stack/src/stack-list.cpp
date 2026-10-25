@@ -30,7 +30,7 @@ void StackLinkedList::push(int data) {
 
 void StackLinkedList::pop() {
     if (this->isEmpty()) {
-        std::cout << "Stack Underflow" << std::endl;
+        cout << "Stack Underflow" << endl;
         return;
     }
     Node *temp = this->top;
@@ -41,7 +41,7 @@ void StackLinkedList::pop() {
 
 int StackLinkedList::peek() {
     if (this->isEmpty()) {
-        std::cout << "Stack is empty" << std::endl;
+        cout << "Stack is empty" << endl;
         return -1;
     }
     return this->top->data;
@@ -54,8 +54,8 @@ int StackLinkedList::size() { return this->count; }
 void StackLinkedList::print() {
     Node *current = this->top;
     while (current != nullptr) {
-        std::cout << current->data << " <- ";
+        cout << current->data << " <- ";
         current = current->next;
     }
-    std::cout << std::endl;
+    cout << endl;
 }

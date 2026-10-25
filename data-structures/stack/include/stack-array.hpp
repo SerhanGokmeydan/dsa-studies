@@ -1,13 +1,14 @@
 #pragma once
 
-class StackArray
-{
-private:
+using namespace std;
+
+class StackArray {
+  private:
     int *arr;
     int capacity;
     int top;
 
-public:
+  public:
     void push(int data);
     void pop();
     int peek();

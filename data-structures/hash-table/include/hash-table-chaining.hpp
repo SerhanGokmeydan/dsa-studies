@@ -1,52 +1,45 @@
 #pragma once
-#include <iostream>
-#include <vector>
 #include <cstddef>
-#include <type_traits>
+#include <iostream>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
+#include <vector>
 
-template <typename K, typename V>
-class HashTableChaining
-{
-private:
-    struct Node
-    {
+using namespace std;
+
+template <typename K, typename V> class HashTableChaining {
+  private:
+    struct Node {
         K key;
         V val;
         Node *next;
         Node(const K &key, const V &val) : key(key), val(val), next(nullptr) {}
     };
-    std::vector<Node *> table;
+    vector<Node *> table;
     size_t count;
     size_t cap;
     float loadFactor;
 
-    void rehash(size_t count)
-    {
+    void rehash(size_t count) {
         // do not forget casting float, or the LF will be 0
         float currentLF = (float)count / table.size();
         size_t newSize = 0;
-        if (currentLF >= loadFactor)
-        {
+        if (currentLF >= loadFactor) {
             newSize = table.size() * 2;
         }
-        // to reduce table size, take the quarted of LF as a measure due to thrashing problem
-        // if we take same LF to update table size, there will be so much O(N) processes in consecutive insert and remove
-        else if (currentLF <= loadFactor / 4.0f && table.size() / 2 >= cap)
-        {
+        // to reduce table size, take the quarted of LF as a measure due to
+        // thrashing problem if we take same LF to update table size, there will
+        // be so much O(N) processes in consecutive insert and remove
+        else if (currentLF <= loadFactor / 4.0f && table.size() / 2 >= cap) {
             newSize = table.size() / 2;
-        }
-        else
-        {
+        } else {
             return;
         }
-        std::vector<Node *> newTable(newSize, nullptr);
-        for (size_t i = 0; i < table.size(); i++)
-        {
+        vector<Node *> newTable(newSize, nullptr);
+        for (size_t i = 0; i < table.size(); i++) {
             Node *current = table.at(i);
-            while (current != nullptr)
-            {
+            while (current != nullptr) {
                 Node *next = current->next;
                 size_t newIndex = hash(current->key, newSize);
                 current->next = newTable.at(newIndex);
@@ -54,54 +47,44 @@ private:
                 current = next;
             }
         }
-        // to copy newTable to table use std::move, it prevent O(N) copying process, reduce it to O(1)
-        table = std::move(newTable);
+        // to copy newTable to table use std::move, it prevent O(N) copying
+        // process, reduce it to O(1)
+        table = move(newTable);
     }
 
-    size_t hash(const K &key, size_t size) const
-    {
-        if constexpr (std::is_integral_v<K>)
-        {
-            // use is_signed_v, otherwise the compiler throw an error says "unsigned numbers cannot be negative"
-            if constexpr (std::is_signed_v<K>)
-            {
-                if (key < 0)
-                {
-                    throw std::invalid_argument("Key value must be positive integer.");
+    size_t hash(const K &key, size_t size) const {
+        if constexpr (is_integral_v<K>) {
+            // use is_signed_v, otherwise the compiler throw an error says
+            // "unsigned numbers cannot be negative"
+            if constexpr (is_signed_v<K>) {
+                if (key < 0) {
+                    throw invalid_argument(
+                        "Key value must be positive integer.");
                 }
             }
             return (size_t)key % size;
-        }
-        else if constexpr (std::is_same_v<K, std::string>)
-        {
+        } else if constexpr (is_same_v<K, string>) {
             size_t hashVal = 0;
-            for (char c : key)
-            {
+            for (char c : key) {
                 hashVal += (size_t)c;
             }
             return hashVal % size;
-        }
-        else
-        {
-            throw std::invalid_argument("The key value must be an integer or a string.");
+        } else {
+            throw invalid_argument(
+                "The key value must be an integer or a string.");
         }
     }
 
-    size_t hash(const K &key) const
-    {
-        return hash(key, table.size());
-    }
+    size_t hash(const K &key) const { return hash(key, table.size()); }
 
-public:
-    HashTableChaining(size_t cap = 10, float loadFactor = 0.75f) : cap(cap), table(cap, nullptr), count(0), loadFactor(loadFactor) {}
+  public:
+    HashTableChaining(size_t cap = 10, float loadFactor = 0.75f)
+        : cap(cap), table(cap, nullptr), count(0), loadFactor(loadFactor) {}
 
-    ~HashTableChaining()
-    {
-        for (size_t i = 0; i < table.size(); i++)
-        {
+    ~HashTableChaining() {
+        for (size_t i = 0; i < table.size(); i++) {
             Node *current = table.at(i);
-            while (current != nullptr)
-            {
+            while (current != nullptr) {
                 Node *temp = current;
                 current = current->next;
                 delete temp;
@@ -109,16 +92,12 @@ public:
         }
     }
 
-    void insert(const K &key, const V &val)
-    {
-        try
-        {
+    void insert(const K &key, const V &val) {
+        try {
             size_t index = hash(key);
             Node *current = table.at(index);
-            while (current != nullptr)
-            {
-                if (current->key == key)
-                {
+            while (current != nullptr) {
+                if (current->key == key) {
                     current->val = val;
                     return;
                 }
@@ -128,30 +107,21 @@ public:
             node->next = table.at(index);
             table.at(index) = node;
             rehash(++count);
-        }
-        catch (const std::exception &e)
-        {
-            std::cerr << e.what() << std::endl;
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
         }
     }
 
-    void remove(const K &key)
-    {
-        try
-        {
+    void remove(const K &key) {
+        try {
             size_t index = hash(key);
             Node *current = table.at(index);
             Node *prev = nullptr;
-            while (current != nullptr)
-            {
-                if (current->key == key)
-                {
-                    if (prev == nullptr)
-                    {
+            while (current != nullptr) {
+                if (current->key == key) {
+                    if (prev == nullptr) {
                         table.at(index) = current->next;
-                    }
-                    else
-                    {
+                    } else {
                         prev->next = current->next;
                     }
                     delete current;
@@ -161,51 +131,40 @@ public:
                 prev = current;
                 current = current->next;
             }
-            std::cout << "Key is not found" << std::endl;
-        }
-        catch (const std::exception &e)
-        {
-            std::cerr << e.what() << std::endl;
+            cout << "Key is not found" << endl;
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
         }
     }
 
-    void search(const K &key)
-    {
-        try
-        {
+    void search(const K &key) {
+        try {
             size_t index = hash(key);
             Node *current = table.at(index);
-            while (current != nullptr)
-            {
-                if (current->key == key)
-                {
-                    std::cout << current->key << " : " << current->val << std::endl;
+            while (current != nullptr) {
+                if (current->key == key) {
+                    cout << current->key << " : " << current->val << endl;
                     return;
                 }
                 current = current->next;
             }
-            std::cout << "Key is not found" << std::endl;
-        }
-        catch (const std::exception &e)
-        {
-            std::cerr << e.what() << std::endl;
+            cout << "Key is not found" << endl;
+        } catch (const exception &e) {
+            cerr << e.what() << endl;
         }
     }
 
-    void print()
-    {
-        std::cout << "------------------------" << std::endl;
-        for (size_t i = 0; i < table.size(); i++)
-        {
-            std::cout << "[" << i << "]";
+    void print() {
+        cout << "------------------------" << endl;
+        for (size_t i = 0; i < table.size(); i++) {
+            cout << "[" << i << "]";
             Node *current = table.at(i);
-            while (current != nullptr)
-            {
-                std::cout << " -> (" << current->key << " : " << current->val << ")";
+            while (current != nullptr) {
+                cout << " -> (" << current->key << " : " << current->val << ")";
                 current = current->next;
             }
-            std::cout << std::endl;
+            cout << endl;
         }
-        std::cout << "------------------------" << std::endl;
+        cout << "------------------------" << endl;
     }
 };

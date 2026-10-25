@@ -1,4 +1,6 @@
 #pragma once
 #include <vector>
 
-void selectionSort(std::vector<int> &arr);
+using namespace std;
+
+void selectionSort(vector<int> &arr);

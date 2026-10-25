@@ -1,4 +1,6 @@
 #pragma once
 #include <vector>
 
-void bubbleSort(std::vector<int> &arr);
+using namespace std;
+
+void bubbleSort(vector<int> &arr);

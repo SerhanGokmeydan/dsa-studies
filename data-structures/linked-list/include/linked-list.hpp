@@ -1,10 +1,10 @@
 #pragma once
 
-class LinkedList
-{
-private:
-    struct Node
-    {
+using namespace std;
+
+class LinkedList {
+  private:
+    struct Node {
         int data;
         Node *next;
         Node(int data);
@@ -12,7 +12,7 @@ private:
 
     Node *head;
 
-public:
+  public:
     int count;
     bool isEmpty();
     int getNodeCount();

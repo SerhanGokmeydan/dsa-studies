@@ -11,7 +11,7 @@ StackArray::~StackArray() { delete[] this->arr; }
 
 void StackArray::push(int data) {
     if (this->isFull()) {
-        std::cout << "Stack Overflow" << std::endl;
+        cout << "Stack Overflow" << endl;
         return;
     }
     this->arr[++top] = data;
@@ -19,7 +19,7 @@ void StackArray::push(int data) {
 
 void StackArray::pop() {
     if (this->isEmpty()) {
-        std::cout << "Stack Underflow" << std::endl;
+        cout << "Stack Underflow" << endl;
         return;
     }
     --this->top;
@@ -27,7 +27,7 @@ void StackArray::pop() {
 
 int StackArray::peek() {
     if (this->isEmpty()) {
-        std::cout << "Stack is empty" << std::endl;
+        cout << "Stack is empty" << endl;
         return -1;
     }
     return this->arr[top];
@@ -41,7 +41,7 @@ int StackArray::size() { return this->top + 1; }
 
 void StackArray::print() {
     for (int i = 0; i <= this->top; ++i) {
-        std::cout << this->arr[i] << " -> ";
+        cout << this->arr[i] << " -> ";
     }
-    std::cout << std::endl;
+    cout << endl;
 }

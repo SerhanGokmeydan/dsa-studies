@@ -25,7 +25,7 @@ LinkedList::~LinkedList() {
 // check whether list is empty
 bool LinkedList::isEmpty() {
     if (this->head == nullptr) {
-        std::cout << "List is empty" << std::endl;
+        cout << "List is empty" << endl;
         return true;
     }
     return false;
@@ -42,10 +42,10 @@ void LinkedList::printLinkedList() {
         return;
     Node *currentNode = this->head;
     while (currentNode != nullptr) {
-        std::cout << currentNode->data << " -> ";
+        cout << currentNode->data << " -> ";
         currentNode = currentNode->next;
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
 // list searching
@@ -65,26 +65,25 @@ void LinkedList::getNthFromBeginning(int pos) {
     if (this->isEmpty())
         return;
     if (pos < 1) {
-        std::cout << "Invalid position" << std::endl;
+        cout << "Invalid position" << endl;
         return;
     }
     Node *currentNode = this->head;
     for (int i = 0; i < pos - 1; i++) {
         currentNode = currentNode->next;
         if (currentNode == nullptr) {
-            std::cout << "Invalid position" << std::endl;
+            cout << "Invalid position" << endl;
             return;
         }
     }
-    std::cout << pos << ". node from beginning is " << currentNode->data
-              << std::endl;
+    cout << pos << ". node from beginning is " << currentNode->data << endl;
 }
 
 void LinkedList::getNthFromEnd(int pos) {
     if (this->isEmpty())
         return;
     if (pos < 1) {
-        std::cout << "Invalid position" << std::endl;
+        cout << "Invalid position" << endl;
         return;
     }
     Node *currentNode = this->head;
@@ -92,7 +91,7 @@ void LinkedList::getNthFromEnd(int pos) {
     for (int i = 0; i < pos - 1; i++) {
         currentNode = currentNode->next;
         if (currentNode == nullptr) {
-            std::cout << "Invalid position" << std::endl;
+            cout << "Invalid position" << endl;
             return;
         }
     }
@@ -100,7 +99,7 @@ void LinkedList::getNthFromEnd(int pos) {
         currentNode = currentNode->next;
         targetNode = targetNode->next;
     }
-    std::cout << pos << ". node from end is " << targetNode->data << std::endl;
+    cout << pos << ". node from end is " << targetNode->data << endl;
 }
 
 // insertion methods
@@ -126,7 +125,7 @@ void LinkedList::insertAfterNode(int key, int data) {
         }
         currentNode = currentNode->next;
     }
-    std::cout << "Node is not found" << std::endl;
+    cout << "Node is not found" << endl;
 }
 
 void LinkedList::insertBeforeNode(int key, int data) {
@@ -145,18 +144,18 @@ void LinkedList::insertBeforeNode(int key, int data) {
         prevNode = currentNode;
         currentNode = currentNode->next;
     }
-    std::cout << "Node is not found" << std::endl;
+    cout << "Node is not found" << endl;
 }
 
 void LinkedList::insertAtPoint(int pos, int data) {
     if (pos < 1) {
-        std::cout << "Invalid position" << std::endl;
+        cout << "Invalid position" << endl;
         return;
     }
     Node *currentNode = this->head;
     for (int i = 0; i < pos - 2; i++) {
         if (currentNode == nullptr) {
-            std::cout << "Invalid position" << std::endl;
+            cout << "Invalid position" << endl;
             return;
         }
         currentNode = currentNode->next;
@@ -199,7 +198,7 @@ void LinkedList::deleteAfterNode(int key) {
     while (currentNode != nullptr) {
         if (currentNode->data == key) {
             if (currentNode->next == nullptr) {
-                std::cout << "There is no node after given key" << std::endl;
+                cout << "There is no node after given key" << endl;
                 return;
             }
             Node *tempNode = currentNode->next;
@@ -210,7 +209,7 @@ void LinkedList::deleteAfterNode(int key) {
         }
         currentNode = currentNode->next;
     }
-    std::cout << "Node is not found" << std::endl;
+    cout << "Node is not found" << endl;
 }
 
 void LinkedList::deleteBeforeNode(int key) {
@@ -223,7 +222,7 @@ void LinkedList::deleteBeforeNode(int key) {
         if (currentNode->data == key) {
             Node *tempNode = firstPrevNode;
             if (currentNode == this->head) {
-                std::cout << "There is no node before given key" << std::endl;
+                cout << "There is no node before given key" << endl;
                 return;
             }
             if (currentNode == this->head->next) {
@@ -239,14 +238,14 @@ void LinkedList::deleteBeforeNode(int key) {
         firstPrevNode = currentNode;
         currentNode = currentNode->next;
     }
-    std::cout << "Node is not found" << std::endl;
+    cout << "Node is not found" << endl;
 }
 
 void LinkedList::deleteAtPoint(int pos) {
     if (this->isEmpty())
         return;
     if (pos < 1) {
-        std::cout << "Invalid position" << std::endl;
+        cout << "Invalid position" << endl;
         return;
     }
     if (pos == 1) {
@@ -257,12 +256,12 @@ void LinkedList::deleteAtPoint(int pos) {
     for (int i = 0; i < pos - 2; i++) {
         currentNode = currentNode->next;
         if (currentNode == nullptr || currentNode->next == nullptr) {
-            std::cout << "Invalid position" << std::endl;
+            cout << "Invalid position" << endl;
             return;
         }
     }
     if (currentNode == nullptr || currentNode->next == nullptr) {
-        std::cout << "Invalid position" << std::endl;
+        cout << "Invalid position" << endl;
         return;
     }
     Node *tempNode = currentNode->next;

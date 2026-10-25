@@ -1,10 +1,10 @@
 #pragma once
 
-class StackLinkedList
-{
-private:
-    struct Node
-    {
+using namespace std;
+
+class StackLinkedList {
+  private:
+    struct Node {
         int data;
         Node *next;
         Node(int data);
@@ -12,7 +12,7 @@ private:
     Node *top;
     int count;
 
-public:
+  public:
     void push(int data);
     void pop();
     int peek();

@@ -8,70 +8,70 @@ int main() {
     linkedList->insertEnd(20);
     linkedList->insertEnd(30);
 
-    std::cout << "List length is " << linkedList->getNodeCount() << std::endl;
+    cout << "List length is " << linkedList->getNodeCount() << endl;
     linkedList->printLinkedList();
 
     if (linkedList->searchNode(2)) {
-        std::cout << "List includes node with data 2" << std::endl;
+        cout << "List includes node with data 2" << endl;
     } else {
-        std::cout << "List does not include node with data 2" << std::endl;
+        cout << "List does not include node with data 2" << endl;
     }
 
     if (linkedList->searchNode(10)) {
-        std::cout << "List includes node with data 10" << std::endl;
+        cout << "List includes node with data 10" << endl;
     } else {
-        std::cout << "List does not include node with data 10" << std::endl;
+        cout << "List does not include node with data 10" << endl;
     }
 
     linkedList->getNthFromBeginning(1);
     linkedList->getNthFromEnd(2);
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->insertBeginnig(4);
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->insertAfterNode(10, 5);
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->insertBeforeNode(30, 6);
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->insertAtPoint(5, 7);
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->insertEnd(60);
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->deleteBeginning();
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->deleteAfterNode(10);
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->deleteBeforeNode(30);
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->deleteAtPoint(3);
     linkedList->printLinkedList();
 
-    std::cout << "-------------" << std::endl;
+    cout << "-------------" << endl;
 
     linkedList->deleteEnd();
     linkedList->printLinkedList();

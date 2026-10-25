@@ -1,13 +1,12 @@
-#include "hash-table-chaining.hpp"
 #include "hash-table-addressing.hpp"
+#include "hash-table-chaining.hpp"
 #include <iostream>
 
-int main()
-{
-    HashTableChaining<int, std::string> hashTableChaining;
-    HashTableAddressing<int, std::string> hashTableAddressing;
+int main() {
+    HashTableChaining<int, string> hashTableChaining;
+    HashTableAddressing<int, string> hashTableAddressing;
 
-    std::cout << "--- Hash Table with separate chaining ---" << std::endl;
+    cout << "--- Hash Table with separate chaining ---" << endl;
 
     hashTableChaining.insert(1, "serhan");
     hashTableChaining.insert(2, "serra");
@@ -37,7 +36,7 @@ int main()
     hashTableChaining.search(94);
     hashTableChaining.search(2);
 
-    std::cout << "--- Hash Table with addressing ---" << std::endl;
+    cout << "--- Hash Table with addressing ---" << endl;
 
     hashTableAddressing.insert(1, "serhan");
     hashTableAddressing.insert(2, "serra");
@@ -65,6 +64,6 @@ int main()
     hashTableAddressing.insert(31, "serhan");
 
     hashTableAddressing.print();
-    
+
     return 0;
 }

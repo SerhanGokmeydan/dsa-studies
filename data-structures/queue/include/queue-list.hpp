@@ -1,10 +1,10 @@
 #pragma once
 
-class QueueList
-{
-private:
-    struct Node
-    {
+using namespace std;
+
+class QueueList {
+  private:
+    struct Node {
         int data;
         Node *next;
         Node(int data);
@@ -13,7 +13,7 @@ private:
     Node *rear;
     int count;
 
-public:
+  public:
     void enqueue(int data);
     void dequeue();
     int peekFront();

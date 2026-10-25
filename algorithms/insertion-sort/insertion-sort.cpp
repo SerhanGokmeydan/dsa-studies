@@ -1,6 +1,6 @@
 #include "insertion-sort.hpp"
 
-void insertionSort(std::vector<int> &arr) {
+void insertionSort(vector<int> &arr) {
     int n = arr.size();
     for (int i = 1; i < n; i++) {
         int key = arr[i];
