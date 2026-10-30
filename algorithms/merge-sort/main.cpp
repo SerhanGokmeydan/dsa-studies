@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-    std::vector<int> arr = {1, 5, 6, 0, 2, 9, 4};
+    vector<int> arr = {1, 5, 6, 0, 2, 9, 4};
 
     mergeSort(arr);
 
